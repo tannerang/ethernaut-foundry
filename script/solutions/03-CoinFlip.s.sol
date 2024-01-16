@@ -22,8 +22,7 @@ contract CoinFlipSolution is Script, EthernautHelper {
         vm.roll(height);
 
         for (uint i = 0; i < 10; i++) {
-            height += 1;
-            vm.roll(height);
+            vm.roll(height + i);
             coinFlipAttacker.attack();
         }
 
