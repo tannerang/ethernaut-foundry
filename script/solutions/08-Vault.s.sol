@@ -22,10 +22,12 @@ contract VaultSolution is Script, EthernautHelper {
         // YOUR SOLUTION HERE
         
         /**
-         * Following function doesn't work for private variable.
+         * Understanding Solidity’s Storage Layout And How To Access State Variables In Storage Slots.
          *
-         * (, bytes memory returnData) = challengeInstance.call(abi.encodeWithSignature("password()"));
-         * bytes32 password = abi.decode(returnData, (bytes32));
+         * The following function doesn't work for private variable:
+         *
+         *     (, bytes memory returnData) = challengeInstance.call(abi.encodeWithSignature("password()"));
+         *     bytes32 password = abi.decode(returnData, (bytes32));
          *
          */
          
