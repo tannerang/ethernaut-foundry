@@ -65,4 +65,17 @@ contract EthernautHelper is Script {
 
         return message;
     }
+    
+    function _createInstance(
+        address levelAddress
+    ) public returns (address challengeInstance) {
+        require(HERO != address(0), "Set HERO address in EthernautHelper.sol");
+        vm.recordLogs();
+        IEthernaut(ETHERNAUT).createLevelInstance(levelAddress);
+        Vm.Log[] memory createEntries = vm.getRecordedLogs();
+        // This is the instance of the challenge contract you need to work with.
+        challengeInstance = address(
+            uint160(uint256(createEntries[(createEntries.length-1)].topics[2]))
+        );
+    }
 }
