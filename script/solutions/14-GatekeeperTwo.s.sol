@@ -17,6 +17,15 @@ contract GatekeeperTwoSolution is Script, EthernautHelper {
         address challengeInstance = createInstance(LEVEL_ADDRESS);
 
         // YOUR SOLUTION HERE
+
+        /**
+         * Gate2:
+         *     The "extcodesize(Addr)" refers to the size of the code at address Addr.
+         *     Once you call the external function in the address Addr's constructor, "extcodesize(Addr)" would be zero.
+         * Gate3:
+         *     ^ is a Bitwise XOR. 
+         *     Equation (a ^ b = c) equals to (a ^ c = b).
+         */
         GatekeeperTwoAttacker gatekeeperTwoAttacker = new GatekeeperTwoAttacker(challengeInstance);
 
         // SUBMIT CHALLENGE. (DON'T EDIT)
