@@ -6,7 +6,7 @@ import {IEthernaut} from "./IEthernaut.sol";
 import "forge-std/Test.sol";
 
 contract EthernautHelper is Script {
-    address HERO = vm.envAddress("ACCOUNT_ADDRESS"); // NOTE CHANGE THIS TO YOUR ADDRESS
+    address HERO = vm.envAddress("ACCOUNT_ADDRESS"); // NOTE CHANGE THIS INTO YOUR ADDRESS
     
     address constant ETHERNAUT = 0xa3e7317E591D5A0F1c605be1b3aC4D2ae56104d6;
 
