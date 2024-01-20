@@ -14,6 +14,7 @@ contract DexTwoSolution is Script, EthernautHelper {
     function run() public {
         vm.startBroadcast(heroPrivateKey);
         // NOTE this is the address of your challenge contract
+        // NOTE make sure to change original function into "_createInstance()" for the correct challengeInstance address.
         address challengeInstance = _createInstance(LEVEL_ADDRESS);
 
         // YOUR SOLUTION HERE
