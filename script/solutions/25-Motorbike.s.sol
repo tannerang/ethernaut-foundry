@@ -6,7 +6,6 @@ import {EthernautHelper} from "../setup/EthernautHelper.sol";
 
 // NOTE You can import your helper contracts & create interfaces here
 import "../../src/25-MotorbikeAttacker.sol";
-import "../../src/Initializable.sol";
 
 contract MotorbikeSolution is Script, EthernautHelper {
     address constant LEVEL_ADDRESS = 0x3A78EE8462BD2e31133de2B8f1f9CBD973D6eDd6;
@@ -17,7 +16,7 @@ contract MotorbikeSolution is Script, EthernautHelper {
         vm.startBroadcast(heroPrivateKey);
         // NOTE this is the address of your challenge contract
         address challengeInstance = createInstance(LEVEL_ADDRESS);
-        
+
         //Motorbike: 0x059Eb4948e7fB39938d5Bb8993A9D2Ce8A443E26
         //Engine: 0x9c4CB32C441F89560997738062645F56FD7a112f
 
