@@ -17,8 +17,7 @@ contract ForceSolution is Script, EthernautHelper {
         address challengeInstance = createInstance(LEVEL_ADDRESS);
 
         // YOUR SOLUTION HERE
-        ForceAttacker forceAttacker = new ForceAttacker(challengeInstance);
-        payable(address(forceAttacker)).transfer(1 wei);
+        ForceAttacker forceAttacker = new ForceAttacker{value: 1 wei}(challengeInstance);
         forceAttacker.attack();
 
         // SUBMIT CHALLENGE. (DON'T EDIT)
